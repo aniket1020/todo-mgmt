@@ -1,8 +1,12 @@
 var express = require('express');
-var router = express.Router();
+var mysql = require('mysql');
+var todoRouter = express.Router();
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+todoRouter.route('/')
+.get((req,res,next)	=>	{
+	res.statusCode	=	200;
+	res.setHeader('Content-Type','application/json');
+	res.end("Welcome");
+})
 
-module.exports = router;
+module.exports = todoRouter;
