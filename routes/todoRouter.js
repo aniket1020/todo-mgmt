@@ -14,13 +14,6 @@ db.connect((err) => {
 	if(err) throw err;
 	console.log("Connection successful");
 })
-/*
-.then(db.query('Create table if not exists user_id(int)(assign_id int not null primary key auto_increment, title varchar(100), body va1rchar(100), time_cr timestamp default current_timestamp, time_rem int not null);', (err) => {
-	if(err) throw err;
-	console.log("Created table MyAssignment [if not exists]");
-}));
-*/
-
 
 //http://localhost:3000/todo
 todoRouter.route('/')
@@ -43,7 +36,7 @@ todoRouter.route('/')
 		})
 	})
 	.delete((req,res)	=>	{
-		db.query("delete from user_"+req.body.userid+" where assign_id	=	"+req.body.assign_id, (err) => {
+		db.query("delete from user_"+req.body.userid+" where assign_id	=	"+req.body.assign_id+";", (err,results) => {
 			if(err) throw err;
 			else {
 				res.status(200).send({err:false,data:results,message:'Delete from the table successfully'});
