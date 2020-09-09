@@ -18,7 +18,7 @@ db.connect((err) => {
 //http://localhost:3000/login
 loginRouter.route('/')
 .post((req,res,err)	=>	{
-	db.query("select * from user_table where username = '"+req.body.username+"';",
+	db.query("select * from user_table where username = '"+req.body.username+"' and member_of_org = '"+req.body.member_of_org+"';",
 			(err,results)	=>	{
 				if(err)	throw err;
 				console.log(results[0]);
