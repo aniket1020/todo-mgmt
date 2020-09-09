@@ -67,13 +67,17 @@ Begin
 declare done int default 0;
 
 declare tbl_nm varchar(20);
+declare fname varchar(20);
+declare lname varchar(20);
+declare uid int;
 
-declare curs cursor for select table_name from user_table where member_of_org=org_mem;
+declare curs cursor for select table_name,firstname,lastname,userid from user_table where member_of_org=org_mem;
 declare continue handler for not found set done = 1;
 
 open curs;
-repeat fetch curs into tbl_nm;
+repeat fetch curs into tbl_nm,fname,lname,uid;
 if done=0 then
+select uid,fname,lname;
 set @sql_stmt = concat('select * from ',tbl_nm,';');
 prepare stmt1 from @sql_stmt;
 execute stmt1;

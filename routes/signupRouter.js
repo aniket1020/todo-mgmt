@@ -33,7 +33,7 @@ signupRouter.route('/')
 		if(err)	throw err;
 		console.log("Created Unique User Table")
 		res.status(200).send({err:false,data:results,message:'Created Unique User Table'});
-		//Trigger to update time_cr on PUT request
+		//Trigger to update time_cr & overdue on PUT request
 	})
 	})
 })
