@@ -34,6 +34,17 @@ signupRouter.route('/')
 		console.log("Created Unique User Table")
 		res.status(200).send({err:false,data:results,message:'Created Unique User Table'});
 		//Trigger to update time_cr & overdue on PUT request
+		/*
+delimiter $$
+create trigger trig_user_1
+before update on user_1 
+for each row begin 
+if new.status=1 then set new.overdue=0; 
+end if; 
+end $$
+delimiter ;
+		*/
+		db.query("create trigger trig_"+userId+" before update on "+userId+" for each row begin if new.status=1 then set new.overdue = 0; end if; end ;");	
 	})
 	})
 })

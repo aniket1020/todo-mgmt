@@ -101,9 +101,9 @@ delimiter ;
 	}
 	else {
 		//Update request for a given user
-		db.query("", (err,results) => {
+		db.query("update user_"+req.body.userid+" set title='"+req.body.title+"', body='"+req.body.body+"', time_rem = "+req.body.time_rem+", status = "+req.body.status+" where assign_id	=	"+req.body.assign_id+";", (err,results) => {
 			if (err) throw err;
-			res.status(200).send({err:false, data:results, message:"Organisation DB Results"});
+			res.status(200).send({err:false, data:results, message:"Updated Member Assignment"});
 		})
 	}
 })
@@ -113,9 +113,9 @@ delimiter ;
 	}
 	else {
 		//Create a new task for a member of an organisation
-		db.query("", (err,results) => {
+		db.query("insert into user_"+req.body.userid+" (title, body, time_rem) values ('"+req.body.title+"','"+req.body.body+"','"+req.body.time_rem+"');", (err,results) => {
 			if (err) throw err;
-			res.status(200).send({err:false, data:results, message:"Organisation DB Results"});
+			res.status(200).send({err:false, data:results, message:"Created New Assignment For Member"});
 		})
 	}
 })
@@ -125,9 +125,9 @@ delimiter ;
 	}
 	else {
 		//Delete the task for a given user
-		db.query("", (err,results) => {
+		db.query("delete from user_"+req.body.userid+" where assign_id	=	"+req.body.assign_id+";", (err,results) => {
 			if (err) throw err;
-			res.status(200).send({err:false, data:results, message:"Organisation DB Results"});
+			res.status(200).send({err:false, data:results, message:"Deleted the Assignment"});
 		})
 	}
 })
